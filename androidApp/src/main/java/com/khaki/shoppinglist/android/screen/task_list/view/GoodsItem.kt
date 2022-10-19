@@ -2,6 +2,7 @@ package com.khaki.shoppinglist.android.screen.task_list.view
 
 import android.text.format.DateFormat
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Checkbox
 import androidx.compose.material.MaterialTheme
@@ -21,6 +22,9 @@ fun GoodsItem(
     Row(
         modifier = Modifier
             .fillMaxWidth()
+            .clickable {
+                onClickCheckbox(uiState.isCheck.not())
+            }
             .background(
                 color = MaterialTheme.colors.background
             )

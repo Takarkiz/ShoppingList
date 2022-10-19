@@ -1,12 +1,26 @@
 package com.khaki.shoppinglist.android.screen.task_list.view
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
-import java.util.Date
+import java.util.*
 
 data class GoodsListUiState(
     val isLoading: Boolean = false,
     val goods: List<GoodsItemUiState> = listOf(),
 )
+
+class PreviewGoodsListStateProvider : PreviewParameterProvider<GoodsListUiState> {
+    override val values: Sequence<GoodsListUiState>
+        get() = sequenceOf(
+            GoodsListUiState(
+                isLoading = true,
+                goods = listOf(),
+            ),
+            GoodsListUiState(
+                isLoading = false,
+                goods = PreviewGoodsItemUiStateProvider().values.toList()
+            )
+        )
+}
 
 data class GoodsItemUiState(
     val id: Long = 0,
@@ -16,7 +30,7 @@ data class GoodsItemUiState(
     val categoryId: Long = 0,
 )
 
-class PreviewGoodsItemUiStateProvider: PreviewParameterProvider<GoodsItemUiState> {
+class PreviewGoodsItemUiStateProvider : PreviewParameterProvider<GoodsItemUiState> {
     override val values: Sequence<GoodsItemUiState>
         get() = sequenceOf(
             GoodsItemUiState(
